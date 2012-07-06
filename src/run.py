@@ -30,6 +30,7 @@ while 1:
         elif event.key == K_UP : picture.ySpeed = -down
         elif event.key == K_DOWN : picture.ySpeed = down
         elif event.key == K_ESCAPE : sys.exit(0)
+        elif event.key == K_f and down : pygame.display.toggle_fullscreen()
     screen.fill((0, 0, 0))
     for sprite_layer in level.sprite_layers:
         if sprite_layer.is_object_group:

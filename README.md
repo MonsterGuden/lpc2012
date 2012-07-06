@@ -11,6 +11,10 @@ aptitude install python-pyglet
 In the folder where you found this file run this command:
 python src/run.py
 
+Controls:
+f to toggle between fullscreen and window mode
+arrows to move the "character"
+
 - Credits so far:
 Roux
 Lucas
