@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="plowed_soil" tilewidth="32" tileheight="32">
   <image source="../images/plowed_soil.png" width="96" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="100" height="100">
+ <layer name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0UEKg0AABMG9GTWJ//+t/mHD0oQqmPtAb2OM1+T2wa8cz87JvZe//l96tOjRokeLHi16tOjRokeLHi16tOjRokeLHi16tOjRokeLHi2fZ9/JXctfAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBaN6wuDrM=
+   eJxjZ2Bg4KAQcwIxCxRzATE3hZhn1LxR80bNGzVv1DwGXiDmoxDzI5lHbQwAUD8Pmw==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
   </data>
  </layer>
 </map>
