@@ -43,15 +43,15 @@ while 1:
     for event in pygame.event.get():
         if not hasattr(event, 'key'): continue
         down = event.type == KEYDOWN 
-        if event.key == K_RIGHT : hero.xSpeed = down * 3
-        elif event.key == K_LEFT : hero.xSpeed = down * -3
-        elif event.key == K_UP : hero.ySpeed = down * -3
-        elif event.key == K_DOWN : hero.ySpeed = down * 3
+        if event.key == K_RIGHT : hero.xSpeed = down * 6
+        elif event.key == K_LEFT : hero.xSpeed = down * -6
+        elif event.key == K_UP : hero.ySpeed = down * -6
+        elif event.key == K_DOWN : hero.ySpeed = down * 6
         elif event.key == K_ESCAPE : sys.exit(0)
         elif event.key == K_f and down : pygame.display.toggle_fullscreen()
     screen.fill((0, 100, 100))
     # update hero and camera
-    hero.update(deltat)
+    hero.update(deltat, level.sprite_layers[2])
     update_camera()
 
     # draw the stuff

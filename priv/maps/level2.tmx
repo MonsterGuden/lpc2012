@@ -3,14 +3,19 @@
  <tileset firstgid="1" name="plowed_soil" tilewidth="32" tileheight="32">
   <image source="../images/plowed_soil.png" width="96" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="40" height="40">
+ <layer name="Background" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt170KwCAMReEMgvbPvv/bNoUOmVxyBaFnOOvlc3BINbOWbPPKVxXsxd3dO5KdwafYi7v48OHDhw8fPnz4/uW7vJ7snugr4hTvje9W3gvqVPfHrFT/A9+a4cOHDx++NcOHD9/Yp7wX1L33xwN06kMr
+   eJztl+sKgCAMRodhV6v3f9sMCkfUuimN/Abn3/g4CG6sIqL6JQ2FqiLk8dzW073EMb8YeTwXfvCDX95+lsLMKhX6pSIXP+MZFgqFftr/B/zg91e/nsJs2MJnhRH6RuZ3lFdcyJFy94q/hTvpPas1626OdC/wXWqFviuUD3Ji3R+pyGX/wk8n8IMf/OAHP53AD35f+0n30dfM99EEomNBuA==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="40" height="40">
+ <layer name="Character Layer" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <layer name="CollisionTiles" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt07EKwCAQREEL//+bbVIbzIoeZAa2k+M1trZHf1aVvoy+jL5M9T64qfr/0JfRl/lrX59s5e3bvt4BAAA4ZQCxIQD9
   </data>
  </layer>
 </map>
