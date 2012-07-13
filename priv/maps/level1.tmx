@@ -3,14 +3,63 @@
  <tileset firstgid="1" name="plowed_soil" tilewidth="32" tileheight="32">
   <image source="../images/plowed_soil.png" width="96" height="192"/>
  </tileset>
- <layer name="Tile Layer 1" width="20" height="20">
+ <layer name="BackgroundLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjZ2Bg4KAQcwIxCxRzATE3hZhn1LxR80bNGzVv1DwGXiDmoxDzI5lHbQwAUD8Pmw==
   </data>
  </layer>
- <layer name="Tile Layer 2" width="20" height="20">
+ <layer name="HeroLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApIBwAGQAAB
   </data>
  </layer>
+ <layer name="CollisionLayer" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff557f" name="Enemy1" width="20" height="20" visible="0">
+  <object name="waypoint1" type="waypoint" x="285" y="238">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="459" y="240">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+  <object name="enemy1" type="enemy" x="-63" y="236">
+   <properties>
+    <property name="sprite" value="priv/images/character.jpg"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="470" y="464">
+   <properties>
+    <property name="number" value="3"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="470" y="243">
+   <properties>
+    <property name="number" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy2" width="20" height="20">
+  <object name="enemy2" type="enemy" x="-63" y="192">
+   <properties>
+    <property name="sprite" value="priv/images/character.jpg"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="76" y="114">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="82" y="304">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
