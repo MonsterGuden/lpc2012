@@ -14,7 +14,7 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
 
         def add_waypoint(self, x, y, nr):
             self.waypoints.append((x, y, nr))
-            
+
         def next_waypoint(self):
             self.current_waypoint += 1
             if(len(self.waypoints) == self.current_waypoint):
@@ -24,7 +24,7 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
             (waypoint_x, waypoint_y, nr) = self.waypoints[self.current_waypoint]
             (position_x, position_y) = position
             if(position_x == waypoint_x and position_y == waypoint_y):
-                self.next_waypoint()    
+                self.next_waypoint()
             return self.waypoints[self.current_waypoint]
 
         def init(self):
@@ -78,7 +78,7 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
             self.view = (x, y-(2*height), width, height*3)
         elif direction == LEFT:
             self.view = (x-(2*width), y, width*3, height)
-        
+
     def draw(self):
         (x, y) = self.position
         self.screen.blit(self.image, (x, y))
