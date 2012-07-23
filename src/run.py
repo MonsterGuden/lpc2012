@@ -1,20 +1,24 @@
 #! /usr/bin/python
-import pygame, sys, tiledtmxloader, character, world
+import pygame, sys, tiledtmxloader, character, world, enemy
 from pygame.locals import *
 from character import character
+from enemy import Enemy
 
 # The actual running game
 pygame.init()
 pygame.display.set_caption("LPC 2012 Python Game")
 clock = pygame.time.Clock()
 
-level = world.level2()
+level = world.level1()
 screen = pygame.display.set_mode((level.screen_width, level.screen_height))
 rect = screen.get_rect()
 
 hero = character("priv/images/character.jpg", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
 level.sprite_layers[1].add_sprite(hero)
 
+enemies_data = []
+enemies = []
+enemy_image = pygame.image.load("priv/images/character.jpg")
 
 # renderer
 renderer = tiledtmxloader.helperspygame.RendererPygame()
@@ -37,6 +41,22 @@ def update_camera():
         renderer._cam_rect.bottom = level.world_map.pixel_height
         renderer.set_camera_rect(renderer._cam_rect)
 
+for sprite_layer in level.sprite_layers:
+    if sprite_layer.is_object_group:
+        enemies_data.append(sprite_layer.objects)
+
+for enemy_data in enemies_data:
+    new_enemy = Enemy(screen)
+    for object in enemy_data:
+        if object.type == 'enemy':
+            new_enemy.set_sprite(object.properties['sprite'])
+        elif object.type == 'waypoint':
+            xPosition = int(object.x // level.sprite_layers[0].tilewidth) * level.sprite_layers[0].tilewidth
+            yPosition = int(object.y // level.sprite_layers[0].tileheight) * level.sprite_layers[0].tileheight
+            new_enemy.add_waypoint((xPosition, yPosition, int(object.properties['number'])))
+    new_enemy.init()
+    enemies.append(new_enemy)
+
 
 while 1:
     deltat = clock.tick(30)
@@ -57,9 +77,20 @@ while 1:
     # draw the stuff
     for sprite_layer in level.sprite_layers:
         if sprite_layer.is_object_group:
-            # we dont draw the object group layers
-            # you should filter them out if not needed
             continue
         else:
             renderer.render_layer(screen, sprite_layer)
-    pygame.display.flip()        
+
+    enemies_view = []
+    for enemy in enemies:
+        enemy.update(deltat)
+        enemy.draw()
+        enemies_view.append(enemy.view)
+
+    # draw everything
+    pygame.display.flip()
+
+    # haha you lost!
+    if hero.rect.collidelist(enemies_view) != -1:
+        print("you died!")
+        sys.exit(0)
