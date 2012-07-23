@@ -81,8 +81,16 @@ while 1:
         else:
             renderer.render_layer(screen, sprite_layer)
 
+    enemies_view = []
     for enemy in enemies:
         enemy.update(deltat)
         enemy.draw()
+        enemies_view.append(enemy.view)
 
+    # draw everything
     pygame.display.flip()
+
+    # haha you lost!
+    if hero.rect.collidelist(enemies_view) != -1:
+        print("you died!")
+        sys.exit(0)
