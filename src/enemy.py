@@ -39,8 +39,8 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.direction = UP
 
     def set_sprite(self, image_location):
-        image = pygame.image.load(image_location)
-        tiledtmxloader.helperspygame.SpriteLayer.Sprite.__init__(self, image, image.get_rect())
+        self.image = pygame.image.load(image_location)
+        tiledtmxloader.helperspygame.SpriteLayer.Sprite.__init__(self, self.image, self.image.get_rect())
 
     def add_waypoint(self, (x, y, nr)):
         self.waypoints.add_waypoint(x, y, nr)
@@ -63,10 +63,24 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
                 position_y -= self.speed
                 self.direction = UP
         self.position = (position_x, position_y)
+
+    def get_view(self):
+        (image_x, image_y, width, height) = self.image.get_rect()
+        (x, y) = self.position
+        direction = self.direction
+        if direction == DOWN:
+            return (x, y, width, height*3)
+        elif direction == RIGHT:
+            return (x, y, width*3, height)
+        elif direction == UP:
+            return (x, y-(2*height), width, height*3)
+        else:
+            return (x-(2*width), y, width*3, height)
         
     def draw(self):
         (x, y) = self.position
         self.screen.blit(self.image, (x, y))
+        pygame.draw.rect(self.screen, (255, 0, 0), self.get_view())
 
     def init(self):
         self.waypoints.init()
