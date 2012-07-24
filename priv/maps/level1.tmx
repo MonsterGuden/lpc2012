@@ -18,7 +18,7 @@
    eJxjYBgFo2AUjIJRMApIBwAGQAAB
   </data>
  </layer>
- <objectgroup color="#ff557f" name="Enemy1" width="20" height="20" visible="0">
+ <objectgroup color="#ff557f" name="Enemy1" width="20" height="20">
   <object name="waypoint1" type="waypoint" x="285" y="238">
    <properties>
     <property name="number" value="1"/>
@@ -31,7 +31,9 @@
   </object>
   <object name="enemy1" type="enemy" x="-63" y="236">
    <properties>
-    <property name="sprite" value="priv/images/character.jpg"/>
+    <property name="sprite" value="priv/images/soldier.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
    </properties>
   </object>
   <object name="waypoint2" type="waypoint" x="470" y="464">
@@ -48,7 +50,9 @@
  <objectgroup name="Enemy2" width="20" height="20">
   <object name="enemy2" type="enemy" x="-63" y="192">
    <properties>
-    <property name="sprite" value="priv/images/character.jpg"/>
+    <property name="sprite" value="priv/images/soldier.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
    </properties>
   </object>
   <object name="waypoint1" type="waypoint" x="76" y="114">

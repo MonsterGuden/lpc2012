@@ -4,6 +4,9 @@ from pygame.locals import *
 from character import character
 from enemy import Enemy
 
+# used to draw debug information
+debug = 0
+
 # The actual running game
 pygame.init()
 pygame.display.set_caption("LPC 2012 Python Game")
@@ -13,7 +16,7 @@ level = world.level1()
 screen = pygame.display.set_mode((level.screen_width, level.screen_height))
 rect = screen.get_rect()
 
-hero = character("priv/images/character.jpg", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
+hero = character("priv/images/soldier.png", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
 level.sprite_layers[1].add_sprite(hero)
 
 enemies_data = []
@@ -49,13 +52,16 @@ for enemy_data in enemies_data:
     new_enemy = Enemy(screen)
     for object in enemy_data:
         if object.type == 'enemy':
-            new_enemy.set_sprite(object.properties['sprite'])
+            new_enemy.set_sprite(object.properties['sprite'],
+                                 object.properties['sprite_width'],
+                                 object.properties['sprite_height'])
         elif object.type == 'waypoint':
             xPosition = int(object.x // level.sprite_layers[0].tilewidth) * level.sprite_layers[0].tilewidth
             yPosition = int(object.y // level.sprite_layers[0].tileheight) * level.sprite_layers[0].tileheight
             new_enemy.add_waypoint((xPosition, yPosition, int(object.properties['number'])))
     new_enemy.init()
     enemies.append(new_enemy)
+    level.sprite_layers[1].add_sprite(new_enemy)
 
 
 while 1:
@@ -74,6 +80,12 @@ while 1:
     hero.update(deltat, level.sprite_layers[2])
     update_camera()
 
+    # update enemies
+    enemies_view = []
+    for enemy in enemies:
+        enemy.update(deltat)
+        enemies_view.append(enemy.view)
+
     # draw the stuff
     for sprite_layer in level.sprite_layers:
         if sprite_layer.is_object_group:
@@ -81,16 +93,15 @@ while 1:
         else:
             renderer.render_layer(screen, sprite_layer)
 
-    enemies_view = []
-    for enemy in enemies:
-        enemy.update(deltat)
-        enemy.draw()
-        enemies_view.append(enemy.view)
+    if debug:
+        for view in enemies_view:
+            pygame.draw.rect(screen, (255, 0, 0), view)
+        pygame.draw.rect(screen, (0, 0, 255), hero.rect)
 
     # draw everything
     pygame.display.flip()
 
     # haha you lost!
     if hero.rect.collidelist(enemies_view) != -1:
-        print("you died!")
-        sys.exit(0)
+       print("you died!")
+       sys.exit(0)

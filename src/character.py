@@ -12,7 +12,8 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.xSpeed = self.ySpeed = 0
         self.speed = 3
         self.mapsize = mapsize
-        self.rect = self.image.get_rect()
+        self.source_rect = pygame.Rect(0, 0, 64, 64)
+        self.rect = pygame.Rect(0, 0, 64, 64)
         self.rect.center = position
 
     def check_map_limits(self):
