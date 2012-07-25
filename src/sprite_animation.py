@@ -3,6 +3,7 @@
 # (y-axis).
 # line is a number (1,2,3) and will be calculated correctly with
 # the help of sprite_height.
+# if line is -1, the old sprite animation will be returned
 
 import pygame
 
@@ -31,6 +32,10 @@ class SpriteAnimation():
 
     # check what should be done and do it
     def update(self, line):
+        # non-animated when line is -1
+        if line == -1:
+            return self.rect
+        # check if new line or next animation
         if(self.line == line):
             Rect = self.animate()
         else:

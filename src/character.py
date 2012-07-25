@@ -1,4 +1,10 @@
-import pygame, tiledtmxloader
+import pygame, tiledtmxloader, sprite_animation
+
+NONE = -1
+UP = 0
+LEFT = 1
+DOWN = 2
+RIGHT = 3
 
 # Simple sprite class
 class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
@@ -11,10 +17,15 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.k_left = self.k_right = self.k_up = self.k_down = 0
         self.xSpeed = self.ySpeed = 0
         self.speed = 3
+        self.direction = UP
         self.mapsize = mapsize
-        self.source_rect = pygame.Rect(0, 0, 64, 64)
-        self.rect = pygame.Rect(0, 0, 64, 64)
+        sprite_width = 64
+        sprite_height = 64
+        self.image_width = self.image.get_rect().width
+        self.source_rect = pygame.Rect(0, 0, sprite_width, sprite_height)
+        self.rect = pygame.Rect(0, 0, sprite_width, sprite_height)
         self.rect.center = position
+        self.animation = sprite_animation.SpriteAnimation(self.image_width, sprite_width, sprite_height)
 
     def check_map_limits(self):
         (mapx, mapy) = self.mapsize
@@ -39,28 +50,36 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
                 if coll_layer.content2D[tile_y+diry][tile_x+dirx] is not None:
                     tile_rects.append(coll_layer.content2D[tile_y+diry][tile_x+dirx].rect)
 
-        # move character if possible
-        collision = start_rect.move(self.xSpeed, 0).collidelist(tile_rects)
-        if collision != -1:
-            if self.xSpeed < 0:
-                self.rect.left = tile_rects[collision].right + 1
+        # move character if possible, only x or y axis
+        if self.xSpeed != 0:
+            collision = start_rect.move(self.xSpeed, 0).collidelist(tile_rects)
+            if collision != -1:
+                if self.xSpeed < 0:
+                    self.rect.left = tile_rects[collision].right + 1
+                else:
+                    self.rect.right = tile_rects[collision].left - 1
             else:
-                self.rect.right = tile_rects[collision].left - 1
-        else:
-            (x, y) = self.rect.center
-            x += self.xSpeed
-            self.rect.center = (x, y)
-
-        collision = start_rect.move(0, self.ySpeed).collidelist(tile_rects)
-        if collision != -1:
-            if self.ySpeed < 0:
-                self.rect.top = tile_rects[collision].bottom + 1
+                (old_x, y) = self.rect.center
+                new_x = old_x + self.xSpeed
+            # set correct direction for animation
+                if old_x < new_x: self.direction = RIGHT
+                else: self.direction = LEFT
+                self.rect.center = (new_x, y)
+        elif self.ySpeed != 0:
+            collision = start_rect.move(0, self.ySpeed).collidelist(tile_rects)
+            if collision != -1:
+                if self.ySpeed < 0:
+                    self.rect.top = tile_rects[collision].bottom + 1
+                else:
+                    self.rect.bottom = tile_rects[collision].top - 1
             else:
-                self.rect.bottom = tile_rects[collision].top - 1
+                (x, old_y) = self.rect.center
+                new_y = old_y + self.ySpeed
+                if old_y < new_y: self.direction = DOWN
+                else: self.direction = UP
+                self.rect.center = (x, new_y)
         else:
-            (x, y) = self.rect.center
-            y += self.ySpeed
-            self.rect.center = (x, y)
+            self.direction = -1
 
 
     def update(self, deltat, collision_tiles):
@@ -68,3 +87,4 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.check_collision_tiles(collision_tiles)
         # check so we don't walk outside the map
         self.check_map_limits()
+        self.source_rect = self.animation.update(self.direction)
