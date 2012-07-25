@@ -16,12 +16,11 @@ level = world.level1()
 screen = pygame.display.set_mode((level.screen_width, level.screen_height))
 rect = screen.get_rect()
 
-hero = character("priv/images/soldier.png", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
+hero = character("priv/images/hero.png", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
 level.sprite_layers[1].add_sprite(hero)
 
 enemies_data = []
 enemies = []
-enemy_image = pygame.image.load("priv/images/character.jpg")
 
 # renderer
 renderer = tiledtmxloader.helperspygame.RendererPygame()

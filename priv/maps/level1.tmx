@@ -31,7 +31,7 @@
   </object>
   <object name="enemy1" type="enemy" x="-63" y="236">
    <properties>
-    <property name="sprite" value="priv/images/soldier.png"/>
+    <property name="sprite" value="priv/images/enemy.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
@@ -50,7 +50,7 @@
  <objectgroup name="Enemy2" width="20" height="20">
   <object name="enemy2" type="enemy" x="-63" y="192">
    <properties>
-    <property name="sprite" value="priv/images/soldier.png"/>
+    <property name="sprite" value="priv/images/enemy.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
