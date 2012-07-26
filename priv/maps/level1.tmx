@@ -5,7 +5,7 @@
  </tileset>
  <layer name="BackgroundLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjZ2Bg4KAQcwIxCxRzATE3hZhn1LxR80bNGzVv1DwGXiDmoxDzI5lHbQwAUD8Pmw==
+   eJwTYmBgEKIyZgdiDgowJ5p5XEDMTQHmGTVv1LxR80bNG6Lm8QIxHwWYH808amIAy1wTww==
   </data>
  </layer>
  <layer name="HeroLayer" width="20" height="20">
@@ -63,6 +63,15 @@
   <object name="waypoint2" type="waypoint" x="82" y="304">
    <properties>
     <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Hero" width="20" height="20">
+  <object name="Hero" type="hero" x="256" y="544">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
    </properties>
   </object>
  </objectgroup>

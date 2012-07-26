@@ -8,19 +8,17 @@ RIGHT = 3
 
 # Simple sprite class
 class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
-    def __init__(self, image, position, mapsize):
+    def __init__(self, image, position, sprite_size, mapsize):
         self.src_image = pygame.image.load(image)
         tiledtmxloader.helperspygame.SpriteLayer.Sprite.__init__(self, image, self.src_image.get_rect())
         self.image = self.src_image
-        self.position = position
         self.speed = self.direction = 0
         self.k_left = self.k_right = self.k_up = self.k_down = 0
         self.xSpeed = self.ySpeed = 0
-        self.speed = 3
+        self.speed = 2
         self.direction = UP
         self.mapsize = mapsize
-        sprite_width = 64
-        sprite_height = 64
+        (sprite_width, sprite_height) = sprite_size
         self.image_width = self.image.get_rect().width
         self.source_rect = pygame.Rect(0, 0, sprite_width, sprite_height)
         self.rect = pygame.Rect(0, 0, sprite_width, sprite_height)
@@ -28,6 +26,7 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.animation = sprite_animation.SpriteAnimation(self.image_width, sprite_width, sprite_height)
 
     def check_map_limits(self):
+        print(self.rect)
         (mapx, mapy) = self.mapsize
         if self.rect.top < 0:
             self.rect.top = 0
@@ -47,8 +46,11 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         tile_y = int((hero_pos_y) // coll_layer.tileheight)
         for diry in (-1, 0, 1):
             for dirx in (-1, 0, 1):
-                if coll_layer.content2D[tile_y+diry][tile_x+dirx] is not None:
-                    tile_rects.append(coll_layer.content2D[tile_y+diry][tile_x+dirx].rect)
+                try:
+                    if coll_layer.content2D[tile_y+diry][tile_x+dirx] is not None:
+                        tile_rects.append(coll_layer.content2D[tile_y+diry][tile_x+dirx].rect)
+                except:
+                    continue
 
         # move character if possible, only x or y axis
         if self.xSpeed != 0:

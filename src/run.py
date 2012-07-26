@@ -5,7 +5,7 @@ from character import character
 from enemy import Enemy
 
 # used to draw debug information
-debug = 0
+debug = 1
 
 # The actual running game
 pygame.init()
@@ -16,10 +16,13 @@ level = world.level1()
 screen = pygame.display.set_mode((level.screen_width, level.screen_height))
 rect = screen.get_rect()
 
-hero = character("priv/images/hero.png", rect.center, (level.world_map.pixel_width, level.world_map.pixel_height))
-level.sprite_layers[1].add_sprite(hero)
+# unsorted objects from tilemap
+objects = []
 
+# data from tilemap about enemies
 enemies_data = []
+
+# the enemies objects
 enemies = []
 
 # renderer
@@ -45,7 +48,20 @@ def update_camera():
 
 for sprite_layer in level.sprite_layers:
     if sprite_layer.is_object_group:
-        enemies_data.append(sprite_layer.objects)
+        objects.append(sprite_layer.objects)
+
+for object in objects:
+    if object[0].type == "hero":
+        position = (int(object[0].x), int(object[0].y))
+        sprite_size = (int(object[0].properties['sprite_width']),
+                       int(object[0].properties['sprite_height']))
+        hero = character(object[0].properties['sprite'],
+                         position,
+                         sprite_size,
+                         (level.world_map.pixel_width, level.world_map.pixel_height))
+        level.sprite_layers[1].add_sprite(hero)
+    else:
+        enemies_data.append(object)
 
 for enemy_data in enemies_data:
     new_enemy = Enemy(screen)
