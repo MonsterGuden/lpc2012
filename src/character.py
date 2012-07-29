@@ -1,4 +1,4 @@
-import pygame, tiledtmxloader, sprite_animation
+import pygame, tiledtmxloader, sprite_animation, util
 
 NONE = -1
 UP = 0
@@ -37,20 +37,8 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
             self.rect.bottom = mapy
 
     def check_collision_tiles(self, coll_layer):
-        start_rect = self.rect
-        (hero_pos_x, hero_pos_y) = self.rect.center
-        tile_rects = []
-        # find the tile location of our hero
-        tile_x = int((hero_pos_x) // coll_layer.tilewidth)
-        tile_y = int((hero_pos_y) // coll_layer.tileheight)
-        for diry in (-1, 0, 1):
-            for dirx in (-1, 0, 1):
-                try:
-                    if coll_layer.content2D[tile_y+diry][tile_x+dirx] is not None:
-                        tile_rects.append(coll_layer.content2D[tile_y+diry][tile_x+dirx].rect)
-                except:
-                    continue
-
+        tile_rects = util.neighbour_tiles(self.rect.center,
+                                                coll_layer)
         collision = self.rect.collidelist(tile_rects)
         if(collision != -1):
             tile_rect = tile_rects[collision]

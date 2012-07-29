@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="plowed_soil" tilewidth="32" tileheight="32">
   <image source="../images/plowed_soil.png" width="96" height="192"/>
  </tileset>
+ <tileset firstgid="19" name="toilets" tilewidth="32" tileheight="32">
+  <image source="../images/toilets.png" width="288" height="352"/>
+ </tileset>
  <layer name="BackgroundLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYKA+YAdiDgowJ5p5XEDMTQHmGTVv1LxR80bNG6Lm8QIxHwWYn4F2AABAgA0n
@@ -19,12 +22,12 @@
   </data>
  </layer>
  <objectgroup color="#ff557f" name="Enemy1" width="20" height="20">
-  <object name="waypoint1" type="waypoint" x="285" y="238">
+  <object name="waypoint1" type="waypoint" x="217" y="316">
    <properties>
     <property name="number" value="1"/>
    </properties>
   </object>
-  <object name="waypoint2" type="waypoint" x="459" y="240">
+  <object name="waypoint2" type="waypoint" x="534" y="319">
    <properties>
     <property name="number" value="2"/>
    </properties>
@@ -36,16 +39,6 @@
     <property name="sprite_width" value="64"/>
    </properties>
   </object>
-  <object name="waypoint2" type="waypoint" x="470" y="464">
-   <properties>
-    <property name="number" value="3"/>
-   </properties>
-  </object>
-  <object name="waypoint2" type="waypoint" x="470" y="243">
-   <properties>
-    <property name="number" value="4"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="Enemy2" width="20" height="20">
   <object name="enemy2" type="enemy" x="-63" y="192">
@@ -55,12 +48,12 @@
     <property name="sprite_width" value="64"/>
    </properties>
   </object>
-  <object name="waypoint1" type="waypoint" x="76" y="114">
+  <object name="waypoint1" type="waypoint" x="113" y="183">
    <properties>
     <property name="number" value="1"/>
    </properties>
   </object>
-  <object name="waypoint2" type="waypoint" x="82" y="304">
+  <object name="waypoint2" type="waypoint" x="117" y="388">
    <properties>
     <property name="number" value="2"/>
    </properties>
@@ -69,10 +62,15 @@
  <objectgroup name="Hero" width="20" height="20">
   <object name="Hero" type="hero" x="256" y="544">
    <properties>
-    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite" value="priv/images/hero.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
   </object>
  </objectgroup>
+ <layer name="Goal" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgaIJ3K5hVQ2bxRMApGwSgYaQAAliQA2A==
+  </data>
+ </layer>
 </map>

@@ -1,5 +1,5 @@
 #! /usr/bin/python
-import pygame, sys, tiledtmxloader, character, world, enemy
+import pygame, sys, tiledtmxloader, character, world, enemy, util
 from pygame.locals import *
 from character import character
 from enemy import Enemy
@@ -111,13 +111,22 @@ while 1:
 
     if debug:
         for view in enemies_view:
-            pygame.draw.rect(screen, (255, 0, 0), view)
-        pygame.draw.rect(screen, (0, 0, 255), hero.rect)
+            pygame.draw.rect(screen, (255, 0, 0), view, 1)
+        pygame.draw.rect(screen, (0, 0, 255), hero.rect, 1)
 
     # draw everything
     pygame.display.flip()
 
-    # haha you lost!
+    # maybe you did it?
+    tiles = util.neighbour_tiles(hero.rect.center,
+                                 level.sprite_layers[3])
+    if(hero.rect.collidelist(tiles) != -1):
+        level = level.next_level()
+        if(level == 0):
+            print("congrats, you did it!")
+            sys.exit(0)
+
+    # haha, or not. you lost!
     if hero.rect.collidelist(enemies_view) != -1:
-       print("you died!")
+       print("you're a bad spy, he saw you!")
        sys.exit(0)

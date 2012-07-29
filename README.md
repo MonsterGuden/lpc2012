@@ -11,9 +11,15 @@ aptitude install python-pyglet
 In the folder where you found this file run this command:
 python src/run.py
 
-Controls:
+- Controls:
 f to toggle between fullscreen and window mode
 arrows to move the "character"
+
+- Creating a map:
+background in tile layer 0
+hero in tile layer 1
+collision objects in tile layer 2
+mission goal in tile layer 3
 
 - Credits so far:
 Roux
