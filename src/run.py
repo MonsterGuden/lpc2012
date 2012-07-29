@@ -91,15 +91,16 @@ while 1:
         elif event.key == K_ESCAPE : sys.exit(0)
         elif event.key == K_f and down : pygame.display.toggle_fullscreen()
     screen.fill((0, 100, 100))
-    # update hero and camera
-    hero.update(deltat, level.sprite_layers[2])
-    update_camera()
 
     # update enemies
     enemies_view = []
     for enemy in enemies:
         enemy.update(deltat)
         enemies_view.append(enemy.view)
+
+    # update hero and camera
+    hero.update(deltat, level.sprite_layers[2])
+    update_camera()
 
     # draw the stuff
     for sprite_layer in level.sprite_layers:

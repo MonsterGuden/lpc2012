@@ -26,7 +26,6 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.animation = sprite_animation.SpriteAnimation(self.image_width, sprite_width, sprite_height)
 
     def check_map_limits(self):
-        print(self.rect)
         (mapx, mapy) = self.mapsize
         if self.rect.top < 0:
             self.rect.top = 0
@@ -52,41 +51,47 @@ class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
                 except:
                     continue
 
-        # move character if possible, only x or y axis
-        if self.xSpeed != 0:
-            collision = start_rect.move(self.xSpeed, 0).collidelist(tile_rects)
-            if collision != -1:
-                if self.xSpeed < 0:
-                    self.rect.left = tile_rects[collision].right + 1
-                else:
-                    self.rect.right = tile_rects[collision].left - 1
-            else:
-                (old_x, y) = self.rect.center
-                new_x = old_x + self.xSpeed
-            # set correct direction for animation
-                if old_x < new_x: self.direction = RIGHT
-                else: self.direction = LEFT
-                self.rect.center = (new_x, y)
-        elif self.ySpeed != 0:
-            collision = start_rect.move(0, self.ySpeed).collidelist(tile_rects)
-            if collision != -1:
-                if self.ySpeed < 0:
-                    self.rect.top = tile_rects[collision].bottom + 1
-                else:
-                    self.rect.bottom = tile_rects[collision].top - 1
-            else:
-                (x, old_y) = self.rect.center
-                new_y = old_y + self.ySpeed
-                if old_y < new_y: self.direction = DOWN
-                else: self.direction = UP
-                self.rect.center = (x, new_y)
-        else:
-            self.direction = -1
+        collision = self.rect.collidelist(tile_rects)
+        if(collision != -1):
+            tile_rect = tile_rects[collision]
+            if(self.direction == DOWN and
+               self.rect.bottom > tile_rect.top):
+                self.rect.bottom = tile_rect.top - 1
+            elif(self.direction == RIGHT and
+                 self.rect.right > tile_rect.left):
+                self.rect.right = tile_rect.left - 1
+            elif(self.direction == LEFT and
+                 self.rect.left < tile_rect.right):
+                self.rect.left = tile_rect.right + 1
+            elif(self.direction == UP and
+                 self.rect.top < tile_rect.bottom):
+                self.rect.top = tile_rect.bottom + 1
 
+    def move(self):
+        if self.xSpeed != 0:
+            (old_x, y) = self.rect.center
+            new_x = old_x + self.xSpeed
+            # set direction
+            if old_x < new_x: self.direction = RIGHT
+            else: self.direction = LEFT
+            self.rect.center = (new_x, y)
+        elif self.ySpeed != 0:
+            (x, old_y) = self.rect.center
+            new_y = old_y + self.ySpeed
+            # set correct direction
+            if old_y < new_y: self.direction = DOWN
+            else: self.direction = UP
+            self.rect.center = (x, new_y)
+        else:
+            # not moving, keep current animation paused
+            self.direction = NONE
 
     def update(self, deltat, collision_tiles):
         # move the character
+        self.move()
+        #check for tilemap collision
         self.check_collision_tiles(collision_tiles)
         # check so we don't walk outside the map
         self.check_map_limits()
+        # animate character
         self.source_rect = self.animation.update(self.direction)

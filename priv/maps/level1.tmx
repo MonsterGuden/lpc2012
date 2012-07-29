@@ -5,7 +5,7 @@
  </tileset>
  <layer name="BackgroundLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJwTYmBgEKIyZgdiDgowJ5p5XEDMTQHmGTVv1LxR80bNG6Lm8QIxHwWYH808amIAy1wTww==
+   eJxjYKA+YAdiDgowJ5p5XEDMTQHmGTVv1LxR80bNG6Lm8QIxHwWYn4F2AABAgA0n
   </data>
  </layer>
  <layer name="HeroLayer" width="20" height="20">
@@ -15,7 +15,7 @@
  </layer>
  <layer name="CollisionLayer" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+   eJxjYWBgYKEypgYYNW/UvFHzRs0bNY/65lETAwCW3AF5
   </data>
  </layer>
  <objectgroup color="#ff557f" name="Enemy1" width="20" height="20">
