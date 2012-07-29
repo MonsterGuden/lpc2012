@@ -31,10 +31,9 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
             self.waypoints = sorted(self.waypoints, key=lambda waypoint: waypoint[2])
 
 
-    def __init__(self, screen):
+    def __init__(self):
         self.waypoints = self.Waypoints()
         self.speed = 4
-        self.screen = screen
         self.direction = UP
         self.view = (0, 0, 0, 0)
 

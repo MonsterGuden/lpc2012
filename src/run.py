@@ -2,33 +2,13 @@
 import pygame, sys, tiledtmxloader, character, world, enemy, util
 from pygame.locals import *
 from character import character
+from world import World
 from enemy import Enemy
 
 # used to draw debug information
-debug = 1
-
-# The actual running game
-pygame.init()
-pygame.display.set_caption("LPC 2012 Python Game")
-clock = pygame.time.Clock()
-
-level = world.level1()
-screen = pygame.display.set_mode((level.screen_width, level.screen_height))
-rect = screen.get_rect()
-
-# unsorted objects from tilemap
-objects = []
-
-# data from tilemap about enemies
-enemies_data = []
-
-# the enemies objects
-enemies = []
-
-# renderer
-renderer = tiledtmxloader.helperspygame.RendererPygame()
-# set initial cam position and size
-renderer.set_camera_position_and_size(0, 0, level.screen_width, level.screen_height, "topleft")
+debug = False
+fullscreen = False
+screen = pygame.display.set_mode((0, 0))
 
 def update_camera():
     HeroRect = hero.rect
@@ -46,41 +26,36 @@ def update_camera():
         renderer._cam_rect.bottom = level.world_map.pixel_height
         renderer.set_camera_rect(renderer._cam_rect)
 
-for sprite_layer in level.sprite_layers:
-    if sprite_layer.is_object_group:
-        objects.append(sprite_layer.objects)
+def next_level():
+    level.next_map()
 
-for object in objects:
-    if object[0].type == "hero":
-        position = (int(object[0].x), int(object[0].y))
-        sprite_size = (int(object[0].properties['sprite_width']),
-                       int(object[0].properties['sprite_height']))
-        hero = character(object[0].properties['sprite'],
-                         position,
-                         sprite_size,
-                         (level.world_map.pixel_width, level.world_map.pixel_height))
-        level.sprite_layers[1].add_sprite(hero)
+    (hero, enemies) = level.init_new_map()
+    level.sprite_layers[1].add_sprite(hero)
+    for enemy in enemies:
+        level.sprite_layers[1].add_sprite(enemy)
+
+    if(fullscreen):
+        screen = pygame.display.set_mode((level.screen_width, level.screen_height), pygame.FULLSCREEN)
     else:
-        enemies_data.append(object)
+        screen = pygame.display.set_mode((level.screen_width, level.screen_height))
+    renderer.set_camera_position_and_size(0, 0, level.screen_width, level.screen_height, "topleft")
 
-for enemy_data in enemies_data:
-    new_enemy = Enemy(screen)
-    for object in enemy_data:
-        if object.type == 'enemy':
-            new_enemy.set_sprite(object.properties['sprite'],
-                                 object.properties['sprite_width'],
-                                 object.properties['sprite_height'])
-        elif object.type == 'waypoint':
-            xPosition = int(object.x // level.sprite_layers[0].tilewidth) * level.sprite_layers[0].tilewidth
-            yPosition = int(object.y // level.sprite_layers[0].tileheight) * level.sprite_layers[0].tileheight
-            new_enemy.add_waypoint((xPosition, yPosition, int(object.properties['number'])))
-    new_enemy.init()
-    enemies.append(new_enemy)
-    level.sprite_layers[1].add_sprite(new_enemy)
+    return (hero, enemies)
 
+# The actual running game
+pygame.init()
+pygame.display.set_caption("LPC 2012 Python Game")
+clock = pygame.time.Clock()
+
+# renderer
+renderer = tiledtmxloader.helperspygame.RendererPygame()
+
+level = World()
+(hero, enemies) = next_level()
 
 while 1:
     deltat = clock.tick(30)
+
     for event in pygame.event.get():
         if not hasattr(event, 'key'): continue
         down = event.type == KEYDOWN 
@@ -89,7 +64,10 @@ while 1:
         elif event.key == K_UP : hero.ySpeed = down * -6
         elif event.key == K_DOWN : hero.ySpeed = down * 6
         elif event.key == K_ESCAPE : sys.exit(0)
-        elif event.key == K_f and down : pygame.display.toggle_fullscreen()
+        elif event.key == K_f and down :
+            pygame.display.toggle_fullscreen()
+            fullscreen = not(fullscreen)
+        elif event.key == K_F1 and down : debug = not(debug)
     screen.fill((0, 100, 100))
 
     # update enemies
@@ -121,10 +99,7 @@ while 1:
     tiles = util.neighbour_tiles(hero.rect.center,
                                  level.sprite_layers[3])
     if(hero.rect.collidelist(tiles) != -1):
-        level = level.next_level()
-        if(level == 0):
-            print("congrats, you did it!")
-            sys.exit(0)
+        (hero, enemies) = next_level()
 
     # haha, or not. you lost!
     if hero.rect.collidelist(enemies_view) != -1:

@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="plowed_soil" tilewidth="32" tileheight="32">
   <image source="../images/plowed_soil.png" width="96" height="192"/>
  </tileset>
+ <tileset firstgid="19" name="toilets" tilewidth="32" tileheight="32">
+  <image source="../images/toilets.png" width="288" height="352"/>
+ </tileset>
  <layer name="Background" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eJztl+sKgCAMRodhV6v3f9sMCkfUuimN/Abn3/g4CG6sIqL6JQ2FqiLk8dzW073EMb8YeTwXfvCDX95+lsLMKhX6pSIXP+MZFgqFftr/B/zg91e/nsJs2MJnhRH6RuZ3lFdcyJFy94q/hTvpPas1626OdC/wXWqFviuUD3Ji3R+pyGX/wk8n8IMf/OAHP53AD35f+0n30dfM99EEomNBuA==
@@ -18,4 +21,18 @@
    eJzt07EKwCAQREEL//+bbVIbzIoeZAa2k+M1trZHf1aVvoy+jL5M9T64qfr/0JfRl/lrX59s5e3bvt4BAAA4ZQCxIQD9
   </data>
  </layer>
+ <layer name="Goal" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztziERAAAIBDDCYulvicCh3mwJVgUAAAAAAKR1OnCYdOBpAecwANI=
+  </data>
+ </layer>
+ <objectgroup name="Hero" width="40" height="40">
+  <object name="Hero" type="hero" x="75" y="100">
+   <properties>
+    <property name="sprite" value="priv/images/hero.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

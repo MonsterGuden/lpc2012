@@ -1,7 +1,21 @@
-import pygame, tiledtmxloader
+import pygame, tiledtmxloader, character, enemy, sys
+from enemy import Enemy
+from character import character
 
 class World():
-    def __init__(self, map):
+    def __init__(self):
+        self.next_level = 0
+        self.levels = list(["priv/maps/level1.tmx"
+                           ,"priv/maps/level2.tmx"])
+
+    def next_map(self):
+        if len(self.levels) == self.next_level:
+            print "congrats, you did it!"
+            sys.exit(0)
+        self.load_map(self.levels[self.next_level])
+        self.next_level += 1
+
+    def load_map(self, map):
         # load the world
         self.world_map = tiledtmxloader.tmxreader.TileMapParser().parse_decode(map)
         # prepare map rendering
@@ -12,21 +26,47 @@ class World():
         self.resources.load(self.world_map)
         self.screen_width = min(1024, self.world_map.pixel_width)
         self.screen_height = min(768, self.world_map.pixel_height)
-
-    def next_level(self):
-        return 0
-
-class level1(World):
-    def __init__(self):
-        World.__init__(self, "priv/maps/level1.tmx")
-        # retrieve layers
         self.sprite_layers = tiledtmxloader.helperspygame.get_layers_from_map(self.resources)
 
-    def next_level(self):
-        level2()
+    def init_new_map(self):
+        # temp tables
+        objects = []
+        enemies_data = []
+        enemies = []
+        hero = 0
 
-class level2(World):
-    def __init__(self):
-        World.__init__(self, "priv/maps/level2.tmx")
-        # retrieve layers
-        self.sprite_layers = tiledtmxloader.helperspygame.get_layers_from_map(self.resources)
+        # get all objects
+        for sprite_layer in self.sprite_layers:
+            if sprite_layer.is_object_group:
+                objects.append(sprite_layer.objects)
+
+        # sort all different variables
+        pixel_width = self.world_map.pixel_width
+        pixel_height = self.world_map.pixel_height
+        for object in objects:
+            if object[0].type == "hero":
+                position = (int(object[0].x), int(object[0].y))
+                sprite_size = (int(object[0].properties['sprite_width']),
+                               int(object[0].properties['sprite_height']))
+                hero = character(object[0].properties['sprite'],
+                                 position,
+                                 sprite_size,
+                                 (pixel_width, pixel_height))
+            else:
+                enemies_data.append(object)
+
+        for enemy_data in enemies_data:
+            new_enemy = Enemy()
+            for object in enemy_data:
+                if object.type == 'enemy':
+                    new_enemy.set_sprite(object.properties['sprite'],
+                                         object.properties['sprite_width'],
+                                         object.properties['sprite_height'])
+                elif object.type == 'waypoint':
+                    xPosition = int(object.x // self.sprite_layers[0].tilewidth) * self.sprite_layers[0].tilewidth
+                    yPosition = int(object.y // self.sprite_layers[0].tileheight) * self.sprite_layers[0].tileheight
+                    new_enemy.add_waypoint((xPosition, yPosition, int(object.properties['number'])))
+            new_enemy.init()
+            enemies.append(new_enemy)
+
+        return (hero, enemies)
