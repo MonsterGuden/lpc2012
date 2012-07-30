@@ -14,8 +14,8 @@ class World():
 
     def next_map(self):
         if len(self.levels) == self.next_level:
-            print "congrats, you did it!"
-            sys.exit(0)
+            self.next_level = -1
+            return
         self.load_map(self.levels[self.next_level])
         self.next_level += 1
 
@@ -28,8 +28,8 @@ class World():
         self.resources = tiledtmxloader.helperspygame.ResourceLoaderPygame()
         # load images into pygame
         self.resources.load(self.world_map)
-        self.screen_width = min(1024, self.world_map.pixel_width)
-        self.screen_height = min(768, self.world_map.pixel_height)
+        self.screen_width = 800
+        self.screen_height = 600
         self.sprite_layers = tiledtmxloader.helperspygame.get_layers_from_map(self.resources)
 
     def init_new_map(self):
