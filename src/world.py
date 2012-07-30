@@ -1,6 +1,6 @@
 import pygame, tiledtmxloader, character, enemy, sys
 from enemy import Enemy
-from character import character
+from character import Character
 
 class World():
     def __init__(self):
@@ -52,7 +52,7 @@ class World():
                 position = (int(object[0].x), int(object[0].y))
                 sprite_size = (int(object[0].properties['sprite_width']),
                                int(object[0].properties['sprite_height']))
-                hero = character(object[0].properties['sprite'],
+                hero = Character(object[0].properties['sprite'],
                                  position,
                                  sprite_size,
                                  (pixel_width, pixel_height))

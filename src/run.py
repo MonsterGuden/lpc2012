@@ -1,7 +1,7 @@
 #! /usr/bin/python
 import pygame, sys, tiledtmxloader, character, world, enemy, util
 from pygame.locals import *
-from character import character
+from character import Character
 from world import World
 from enemy import Enemy
 

@@ -7,7 +7,7 @@ DOWN = 2
 RIGHT = 3
 
 # Simple sprite class
-class character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
+class Character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
     def __init__(self, image, position, sprite_size, mapsize):
         self.src_image = pygame.image.load(image)
         tiledtmxloader.helperspygame.SpriteLayer.Sprite.__init__(self, image, self.src_image.get_rect())
