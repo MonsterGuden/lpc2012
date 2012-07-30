@@ -27,7 +27,6 @@ class Run():
             elif event.key == K_f and down : pygame.display.toggle_fullscreen()
             else: events.append(event)
 
-        self.screen.fill((0, 100, 100))
         deltat = self.clock.tick(30)
 
         if(self.state == util.STATE_NewGame):
@@ -39,12 +38,13 @@ class Run():
         elif(self.state == util.STATE_GameOver):
             for event in events:
                 if event.key == K_RETURN : self.state = util.STATE_NewGame
-            self.screen.blit(self.GameOverScreen, self.GameOverScreen.get_rect())
+            self.screen.blit(self.GameOverScreen, self.GameOverScreen.get_rect(), None, pygame.BLEND_MAX)
         elif(self.state == util.STATE_GameComplete):
             for event in events:
                 if event.key == K_RETURN : self.state = util.STATE_NewGame
-            self.screen.blit(self.GameCompleteScreen, self.GameCompleteScreen.get_rect())
+            self.screen.blit(self.GameCompleteScreen, self.GameCompleteScreen.get_rect(), None, pygame.BLEND_MAX)
         elif(self.state == util.STATE_InGame):
+            self.screen.fill((0, 100, 100))
             self.state = self.game.update(deltat, self.screen, events)
 
         # draw everything
