@@ -1,3 +1,8 @@
+STATE_InGame = 1
+STATE_NewGame = 2
+STATE_GameOver = 3
+STATE_GameComplete = 4
+
 def neighbour_tiles(rect_center, tile_layer):
     (pos_x, pos_y) = rect_center
     tile_rects = []

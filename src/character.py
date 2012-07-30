@@ -16,7 +16,7 @@ class Character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.k_left = self.k_right = self.k_up = self.k_down = 0
         self.xSpeed = self.ySpeed = 0
         self.speed = 2
-        self.direction = UP
+        self.direction = DOWN
         self.mapsize = mapsize
         (sprite_width, sprite_height) = sprite_size
         self.image_width = self.image.get_rect().width

@@ -14,10 +14,10 @@ class World():
 
     def next_map(self):
         if len(self.levels) == self.next_level:
-            self.next_level = -1
-            return
+            return False
         self.load_map(self.levels[self.next_level])
         self.next_level += 1
+        return True
 
     def load_map(self, map):
         # load the world
