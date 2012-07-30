@@ -8,6 +8,10 @@ class World():
         self.levels = list(["priv/maps/level1.tmx"
                            ,"priv/maps/level2.tmx"])
 
+    def first_map(self):
+        self.load_map(self.levels[0])
+        self.next_level = 1
+
     def next_map(self):
         if len(self.levels) == self.next_level:
             print "congrats, you did it!"

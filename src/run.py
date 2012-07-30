@@ -28,7 +28,13 @@ def update_camera():
 
 def next_level():
     level.next_map()
+    return init_map()
 
+def first_level():
+    level.first_map()
+    return init_map()
+
+def init_map():
     (hero, enemies) = level.init_new_map()
     level.sprite_layers[1].add_sprite(hero)
     for enemy in enemies:
@@ -51,7 +57,7 @@ clock = pygame.time.Clock()
 renderer = tiledtmxloader.helperspygame.RendererPygame()
 
 level = World()
-(hero, enemies) = next_level()
+(hero, enemies) = first_level()
 
 while 1:
     deltat = clock.tick(30)
@@ -68,6 +74,7 @@ while 1:
             pygame.display.toggle_fullscreen()
             fullscreen = not(fullscreen)
         elif event.key == K_F1 and down : debug = not(debug)
+        elif event.key == K_n and down: (hero, enemies) = first_level()
     screen.fill((0, 100, 100))
 
     # update enemies
