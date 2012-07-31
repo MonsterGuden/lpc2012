@@ -14,7 +14,7 @@ unzip -x tiledtmxloader-3.0.3.114.zip
 cd tiledtmxloader-3.0.3.114
 sudo python setup.py install
 cd ..
-rm -rf tiledtmxloader-3.0.3.114
+sudo rm -rf tiledtmxloader-3.0.3.114
 rm -rf tiledtmxloader-3.0.3.114.zip
 
 - To run the game:
