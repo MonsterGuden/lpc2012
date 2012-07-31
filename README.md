@@ -9,15 +9,15 @@ python python-pygame, python-pyglet, map loader for 'tiled'
 
 Installation instructions
 -------
-- sudo aptitude install python-pygame
-- sudo aptitude install python-pyglet
-- wget https://pytmxloader.googlecode.com/files/tiledtmxloader-3.0.3.114.zip
-- unzip -x tiledtmxloader-3.0.3.114.zip
-- cd tiledtmxloader-3.0.3.114
-- sudo python setup.py install
-- cd ..
-- sudo rm -rf tiledtmxloader-3.0.3.114
-- rm -rf tiledtmxloader-3.0.3.114.zip
+1. sudo aptitude install python-pygame
+2. sudo aptitude install python-pyglet
+3. wget https://pytmxloader.googlecode.com/files/tiledtmxloader-3.0.3.114.zip
+4. unzip -x tiledtmxloader-3.0.3.114.zip
+5. cd tiledtmxloader-3.0.3.114
+6. sudo python setup.py install
+7. cd ..
+8. sudo rm -rf tiledtmxloader-3.0.3.114
+9. rm -rf tiledtmxloader-3.0.3.114.zip
 
 To run the game
 -------
