@@ -1,0 +1,27 @@
+Code authors
+============
+
+This program was written by the following people:
+ - Lucas Robsahm
+
+Asset attribution
+=================
+
+Assets were authored by the following people:
+
+Matthew Nash
+ - toilets.png
+
+Daniel Eddeland
+ - plowed_soil.png
+
+Barbara Rivera
+ - hero.png
+
+Manuel Riecke (AKA MrBeast)
+ - enemy.png
+
+Lucas Robsahm
+ - gamecomplete.png
+ - gameover.png
+ - newgame.png
