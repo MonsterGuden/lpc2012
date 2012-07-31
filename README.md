@@ -36,14 +36,14 @@ Creating a tilemap
 - hero in tile layer 1
 - collision objects in tile layer 2
 - mission goal in tile layer 3
-- enemies as object layer
-- * enemie object properties (type enemy)
-- * - sprite - path to the sprite
-- * - sprite_height - height of the sprite
-- * - sprite_width - width of the sprite
-- * enemie waypoint object properties (type waypoint)
-- * - number - the numer in the order the enemy should walk
 - hero object properties
-- * sprite - path to the sprite
-- * sprite_height - height of the sprite
-- * sprite_width - width of the sprite
+	- sprite - path to the sprite
+	- sprite_height - height of the sprite
+	- sprite_width - width of the sprite
+- enemies as object layer
+	- enemie object properties (type enemy)
+		- sprite - path to the sprite
+		- sprite_height - height of the sprite
+		- sprite_width - width of the sprite
+	- enemie waypoint object properties (type waypoint)
+		- number - the numer in the order the enemy should walk
