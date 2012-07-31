@@ -1,7 +1,9 @@
-lpc2012
+LPC2012 code competition game
 =======
 
-Liberated Pixel Cup 2012 Python game
+The competition is to create a game with given graphics in one month. First time ever for me to code a project in python but it worked out fine thanks to pygame.<br><br>
+More information about the competition at http://lpc.opengameart.org/<br><br>
+I hope that you like the game, enjoy!
 
 Requirements
 -------
