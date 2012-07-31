@@ -39,8 +39,10 @@ class Run():
         for event in pygame.event.get():
             if not hasattr(event, 'key'): continue
             down = event.type == KEYDOWN
-            if event.key == K_ESCAPE and down : sys.exit(0)
-            elif event.key == K_f and down : pygame.display.toggle_fullscreen()
+            if event.key == K_ESCAPE and down and self.state != util.STATE_InGame : 
+                sys.exit(0)
+            elif event.key == K_f and down :
+                pygame.display.toggle_fullscreen()
             else: events.append(event)
 
         deltat = self.clock.tick(30)

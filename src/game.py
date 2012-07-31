@@ -73,6 +73,8 @@ class Game():
                 self.hero.ySpeed = down * -6
             elif event.key == pygame.K_DOWN : 
                 self.hero.ySpeed = down * 6
+            elif event.key == pygame.K_ESCAPE and down:
+                return util.STATE_NewGame
             elif event.key == pygame.K_F1 and down : 
                 self.debug = not(self.debug)
 
