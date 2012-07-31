@@ -6,7 +6,7 @@ Liberated Pixel Cup 2012 Python game
 - Requirements:
 python-pygame, python-pyglet, map loader for 'tiled'
 
--Installation instructions
+- Installation instructions
 sudo aptitude install python-pygame
 sudo aptitude install python-pyglet
 wget https://pytmxloader.googlecode.com/files/tiledtmxloader-3.0.3.114.zip
@@ -23,6 +23,7 @@ python src/run.py
 
 - Controls:
 f to toggle between fullscreen and window mode
+n in menu to start a new game
 arrows to move the "character"
 escape to exit
 
