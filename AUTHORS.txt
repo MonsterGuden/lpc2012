@@ -21,6 +21,11 @@ Barbara Rivera
 Manuel Riecke (AKA MrBeast)
  - enemy.png
 
+Nelson James Gatlin
+ - choir.flac
+ - brass.flac
+ - theme.flac
+
 Lucas Robsahm
  - gamecomplete.png
  - gameover.png

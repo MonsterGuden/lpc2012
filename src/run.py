@@ -30,6 +30,8 @@ class Run():
         # The actual running game
         pygame.init()
         pygame.display.set_caption("LPC 2012 Python Game")
+        pygame.mixer.music.load("priv/sounds/theme.flac")
+        pygame.mixer.music.play(-1)
         self.clock = pygame.time.Clock()
 
     def update(self):
