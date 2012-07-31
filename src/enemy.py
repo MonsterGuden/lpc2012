@@ -85,15 +85,28 @@ class Enemy(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
 
     def update_view(self):
         (x, y, width, height) = self.rect
+        center = self.rect.center
         direction = self.direction
         if direction == DOWN:
-            self.view = pygame.Rect(x, y, width, height*3)
+            self.view = pygame.Rect(x, y, width/2, height)
+            self.view.center = center
+            self.view.y += height * 0.2
+            self.view.height = self.view.height * 3
         elif direction == RIGHT:
-            self.view = pygame.Rect(x, y, width*3, height)
+            self.view = pygame.Rect(x, y, width, height * 0.7)
+            self.view.center = center
+            self.view.x += width * 0.2
+            self.view.width = width * 3
         elif direction == UP:
-            self.view = pygame.Rect(x, y-(2*height), width, height*3)
+            self.view = pygame.Rect(x, y, width/2, height)
+            self.view.center = center
+            self.view.y -= 2 * height
+            self.view.height = height * 3
         elif direction == LEFT:
-            self.view = pygame.Rect(x-(2*width), y, width*3, height)
+            self.view = pygame.Rect(x, y, width, height * 0.7)
+            self.view.center = center
+            self.view.x -= 2 * width + width * 0.2
+            self.view.width = width * 3
 
     def init(self):
         self.waypoints.init()

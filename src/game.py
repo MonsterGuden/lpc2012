@@ -105,13 +105,13 @@ class Game():
                 view.left -= camera_left
                 view.top -= camera_top
                 pygame.draw.rect(screen, (255, 0, 0), view, 1)
-            hero_rect = hero.rect.copy()
+            hero_rect = hero.collision_rect.copy()
             hero_rect.left -= camera_left
             hero_rect.top -= camera_top
             pygame.draw.rect(screen, (0, 0, 255), hero_rect, 1)
 
         # haha, or not. you lost!
-        if hero.rect.collidelist(enemies_view) != -1:
+        if hero.collision_rect.collidelist(enemies_view) != -1:
             return util.STATE_GameOver
 
         # maybe you did it?

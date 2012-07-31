@@ -38,6 +38,11 @@ class Character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         self.source_rect = pygame.Rect(0, 0, sprite_width, sprite_height)
         self.rect = pygame.Rect(0, 0, sprite_width, sprite_height)
         self.rect.center = position
+        # sprite rect include a lot of transparant data
+        self.collision_rect = self.rect.copy()
+        self.collision_rect.width = sprite_width / 2
+        self.collision_rect.height = sprite_height * 0.7
+        self.collision_rect.center = self.rect.center
         self.animation = sprite_animation.SpriteAnimation(self.image_width, sprite_width, sprite_height)
 
     def check_map_limits(self):
@@ -69,6 +74,7 @@ class Character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
             elif(self.direction == UP and
                  self.rect.top < tile_rect.bottom):
                 self.rect.top = tile_rect.bottom + 1
+            self.collision_rect.center = self.rect.center
 
     def move(self):
         if self.xSpeed != 0:
@@ -88,6 +94,7 @@ class Character(tiledtmxloader.helperspygame.SpriteLayer.Sprite):
         else:
             # not moving, keep current animation paused
             self.direction = NONE
+        self.collision_rect.center = self.rect.center
 
     def update(self, deltat, collision_tiles):
         # move the character
