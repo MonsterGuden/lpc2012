@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="56" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="sandwater" tilewidth="32" tileheight="32">
+  <image source="../images/sandwater.png" width="96" height="192"/>
+ </tileset>
+ <tileset firstgid="19" name="toilets" tilewidth="32" tileheight="32">
+  <image source="../images/toilets.png" width="288" height="352"/>
+ </tileset>
+ <layer name="Background" width="56" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztl1kKwCAMRKWlK12g9z9shSIIBaNm7DoD86UkfVZiYsy16qx7kAchpluX8vr7tBqtN5AnIaZbl/L6+8hHPvKR7w98jTnqe6vkc3EQ7xWSL/b/os81lI985Mvhm60XkOtCfFXid6ymjEL1WsOHrOMakY98SD7kzCn1E3fwXVWzyUc+8pGPfO/nS+1lY/vdp/ChZvbYt/8L9xNxv8l3FnK2LemceXUHNm9LQA==
+  </data>
+ </layer>
+ <layer name="Character" width="56" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1pCaAAAAAAAADgBhpAAAE=
+  </data>
+ </layer>
+ <layer name="Collision" width="56" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1EEKACAIBVG9/6XbtjPB9Asz0C6yt9HNzBtPddGbr3Px4cOXDx+++56aL2pqblf4dodvd1V7sWtH/vgvPnyTvk3hw6ccPnzK4cOnHD58ymVtB+7aAec=
+  </data>
+ </layer>
+ <layer name="Goal" width="56" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztziENAAAIADDCYulviYBiIP4Ej4Bf8jqwrK4DAAAAAAAwaA9pANI=
+  </data>
+ </layer>
+ <objectgroup name="Hero" width="56" height="30">
+  <object name="Hero" type="hero" x="176" y="114">
+   <properties>
+    <property name="sprite" value="priv/images/hero.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy1" width="56" height="30">
+  <object name="enemy1" type="enemy" x="654" y="464">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="712" y="433">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="847" y="433">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy2" width="56" height="30">
+  <object name="enemy1" type="enemy" x="495" y="528">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="652" y="595">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="237" y="590">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+  <object name="waypoint3" type="waypoint" x="239" y="781">
+   <properties>
+    <property name="number" value="3"/>
+   </properties>
+  </object>
+  <object name="waypoint4" type="waypoint" x="659" y="783">
+   <properties>
+    <property name="number" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy3" width="56" height="30">
+  <object name="enemy1" type="enemy" x="528" y="843">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="111" y="880">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="1040" y="879">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy4" width="56" height="30">
+  <object name="enemy1" type="enemy" x="525" y="946">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="1039" y="912">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="113" y="912">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy5" width="56" height="30">
+  <object name="enemy1" type="enemy" x="903" y="747">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="946" y="752">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="1359" y="751">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+  <object name="waypoint3" type="waypoint" x="1357" y="432">
+   <properties>
+    <property name="number" value="3"/>
+   </properties>
+  </object>
+  <object name="waypoint4" type="waypoint" x="944" y="429">
+   <properties>
+    <property name="number" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy6" width="56" height="30">
+  <object name="enemy1" type="enemy" x="1163" y="89">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="1325" y="145">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="1004" y="143">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Enemy7" width="56" height="30">
+  <object name="enemy1" type="enemy" x="1545" y="114">
+   <properties>
+    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite_height" value="64"/>
+    <property name="sprite_width" value="64"/>
+   </properties>
+  </object>
+  <object name="waypoint1" type="waypoint" x="1486" y="49">
+   <properties>
+    <property name="number" value="1"/>
+   </properties>
+  </object>
+  <object name="waypoint2" type="waypoint" x="1487" y="369">
+   <properties>
+    <property name="number" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

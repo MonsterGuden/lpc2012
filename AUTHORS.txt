@@ -14,6 +14,7 @@ Matthew Nash
 
 Daniel Eddeland
  - plowed_soil.png
+ - sandwater.png
 
 Barbara Rivera
  - hero.png
@@ -22,8 +23,6 @@ Manuel Riecke (AKA MrBeast)
  - enemy.png
 
 Nelson James Gatlin
- - choir.flac
- - brass.flac
  - theme.flac
 
 Lucas Robsahm

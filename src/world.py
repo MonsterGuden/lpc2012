@@ -21,7 +21,8 @@ class World():
     def __init__(self):
         self.next_level = 0
         self.levels = list(["priv/maps/level1.tmx"
-                           ,"priv/maps/level2.tmx"])
+                           ,"priv/maps/level2.tmx"
+                           ,"priv/maps/level3.tmx"])
 
     def first_map(self):
         self.load_map(self.levels[0])
@@ -43,8 +44,6 @@ class World():
         self.resources = tiledtmxloader.helperspygame.ResourceLoaderPygame()
         # load images into pygame
         self.resources.load(self.world_map)
-        self.screen_width = 800
-        self.screen_height = 600
         self.sprite_layers = tiledtmxloader.helperspygame.get_layers_from_map(self.resources)
 
     def init_new_map(self):

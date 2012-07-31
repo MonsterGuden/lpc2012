@@ -21,7 +21,7 @@ from enemy import Enemy
 
 class Run():
     def __init__(self):
-        self.screen = pygame.display.set_mode((800, 600))
+        self.screen = pygame.display.set_mode((util.SCREEN_WIDTH, util.SCREEN_HEIGHT))
         self.NewGameScreen = pygame.image.load("priv/images/newgame.png")
         self.GameOverScreen = pygame.image.load("priv/images/gameover.png")
         self.GameCompleteScreen = pygame.image.load("priv/images/gamecomplete.png")
@@ -60,7 +60,7 @@ class Run():
                 if event.key == K_RETURN : self.state = util.STATE_NewGame
             self.screen.blit(self.GameCompleteScreen, self.GameCompleteScreen.get_rect(), None, pygame.BLEND_MAX)
         elif(self.state == util.STATE_InGame):
-            self.screen.fill((0, 100, 100))
+            self.screen.fill((0, 0, 0))
             self.state = self.game.update(deltat, self.screen, events)
 
         # draw everything

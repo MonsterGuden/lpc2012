@@ -40,7 +40,7 @@ class Game():
         for enemy in enemies:
             self.level.sprite_layers[1].add_sprite(enemy)
             
-        self.renderer.set_camera_position_and_size(0, 0, self.level.screen_width, self.level.screen_height, "topleft")
+        self.renderer.set_camera_position_and_size(0, 0, util.SCREEN_WIDTH, util.SCREEN_HEIGHT, "topleft")
 
         self.hero = hero
         self.enemies = enemies
@@ -111,7 +111,14 @@ class Game():
             pygame.draw.rect(screen, (0, 0, 255), hero_rect, 1)
 
         # haha, or not. you lost!
-        if hero.collision_rect.collidelist(enemies_view) != -1:
+        collision = hero.collision_rect.collidelist(enemies_view)
+        if collision != -1:
+            camera_left = self.renderer._cam_rect.left
+            camera_top = self.renderer._cam_rect.top
+            view = enemies_view[collision].copy()
+            view.left -= camera_left
+            view.top -= camera_top
+            pygame.draw.rect(screen, (255, 0, 0), view, 3)
             return util.STATE_GameOver
 
         # maybe you did it?

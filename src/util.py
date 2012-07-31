@@ -14,6 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# screen resolution
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
 # Defines the different states
 STATE_InGame = 1
 STATE_NewGame = 2
