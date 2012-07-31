@@ -74,7 +74,7 @@ class Game():
             elif event.key == pygame.K_DOWN : 
                 self.hero.ySpeed = down * 6
             elif event.key == pygame.K_F1 and down : 
-                self.debug = not(debug)
+                self.debug = not(self.debug)
 
         enemies = self.enemies
         hero = self.hero
@@ -95,10 +95,20 @@ class Game():
             else:
                 self.renderer.render_layer(screen, sprite_layer)
 
+        # draw debug data to show collision boxes
         if self.debug:
-            for view in enemies_view:
+            # calculate where on the camera it should be
+            camera_left = self.renderer._cam_rect.left
+            camera_top = self.renderer._cam_rect.top
+            for enemy_view in enemies_view:
+                view = enemy_view.copy()
+                view.left -= camera_left
+                view.top -= camera_top
                 pygame.draw.rect(screen, (255, 0, 0), view, 1)
-            pygame.draw.rect(screen, (0, 0, 255), hero.rect, 1)
+            hero_rect = hero.rect.copy()
+            hero_rect.left -= camera_left
+            hero_rect.top -= camera_top
+            pygame.draw.rect(screen, (0, 0, 255), hero_rect, 1)
 
         # haha, or not. you lost!
         if hero.rect.collidelist(enemies_view) != -1:
