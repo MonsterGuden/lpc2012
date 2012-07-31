@@ -25,6 +25,9 @@ Manuel Riecke (AKA MrBeast)
 Nelson James Gatlin
  - theme.flac
 
+Chris Phillips
+ - gunner.png
+
 Lucas Robsahm
  - gamecomplete.png
  - gameover.png

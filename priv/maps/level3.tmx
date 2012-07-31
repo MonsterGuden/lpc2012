@@ -38,7 +38,7 @@
  <objectgroup name="Enemy1" width="56" height="30">
   <object name="enemy1" type="enemy" x="654" y="464">
    <properties>
-    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite" value="priv/images/gunner.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
@@ -105,7 +105,7 @@
  <objectgroup name="Enemy4" width="56" height="30">
   <object name="enemy1" type="enemy" x="525" y="946">
    <properties>
-    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite" value="priv/images/gunner.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
@@ -153,7 +153,7 @@
  <objectgroup name="Enemy6" width="56" height="30">
   <object name="enemy1" type="enemy" x="1163" y="89">
    <properties>
-    <property name="sprite" value="priv/images/enemy.png"/>
+    <property name="sprite" value="priv/images/gunner.png"/>
     <property name="sprite_height" value="64"/>
     <property name="sprite_width" value="64"/>
    </properties>
