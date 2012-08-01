@@ -29,6 +29,10 @@ Chris Phillips
  - gunner.png
 
 Lucas Robsahm
+These files are released under GPLv3 and CC BY-SA 3.0
  - gamecomplete.png
  - gameover.png
  - newgame.png
+ - level1.tmx
+ - level2.tmx
+ - level3.tmx
